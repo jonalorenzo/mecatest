@@ -9,7 +9,7 @@
         Vertical Hospital
 """,
     'author' : 'Jonathan Lorenzo',
-    'depends': [],
+    'depends': ['base', 'mail'],
     'data': [
         'security/ir.model.access.csv',
         'views/meca_menu.xml',

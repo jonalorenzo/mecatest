@@ -27,7 +27,7 @@
                             <field name="dni"/>
                             <field name="admission_date"/>
                             <field name="update_date" readonly="1"/>
-                            <field name="treatment_ids"/>
+                            <field name="treatment_ids" options="{'no_create': True}"/>
                             <field name="state" widget="statusbar" statusbar_visible="draft,active,inactive" statusbar_colors='{"draft":"gray","active":"green","inactive":"red"}'/>
                         </group>
                         <notebook>
@@ -48,6 +48,9 @@
                     <field name="sequence"/>
                     <field name="name"/>
                     <field name="dni"/>
+                    <field name="admission_date"/>
+                    <field name="update_date" readonly="1"/>
+                    <field name="treatment_ids" options="{'no_create': True}"/>
                     <field name="state"/>
                 </tree>
             </field>
@@ -61,9 +64,9 @@
         </record>
 
         <record model="ir.actions.act_window.view" id="action_pacientes_form_view">
-            <field name="sequence" eval="10"/>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="pacientes_form_view"/>
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pacientes_tree_view"/>
             <field name="act_window_id" ref="action_vertical_hospital_pacientes"/>
         </record>
 
