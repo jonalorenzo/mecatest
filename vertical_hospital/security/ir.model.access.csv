@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_meca_pacientes,access_meca_pacientes,model_meca_pacientes,,1,1,1,1
+access_meca_tratamientos,access_meca_tratamientos,model_meca_tratamientos,,1,1,1,1
