@@ -13,8 +13,6 @@
     'data': [
         'security/ir.model.access.csv',
         'views/meca_menu.xml',
-        'views/meca_pacientes.xml',
-        'views/meca_tratamientos.xml',
     ],
     'installable': True,
     'auto_install': False,

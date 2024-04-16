@@ -7,3 +7,4 @@ class MecaTratamientos(models.Model):
 
     name = fields.Char('Nombre', required=True)
     code = fields.Char('Código', required=True)
+    doctor_id = fields.Char('Médito tratante', required=True)

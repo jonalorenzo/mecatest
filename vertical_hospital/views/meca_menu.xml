@@ -1,20 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Definición de Vistas y Acciones para Pacientes -->
+        <record id="pacientes_filter_view" model="ir.ui.view">
+            <field name="name">pacientes.filter.view</field>
+            <field name="model">meca.pacientes</field>
+            <field name="arch" type="xml">
+                <search string="Search ">
+                    <group>
+                        <field name="name"/>
+                        <field name="dni"/>
+                    </group>
+                </search>
+            </field>
+        </record>
 
+        <record id="pacientes_form_view" model="ir.ui.view">
+            <field name="name">pacientes.form.view</field>
+            <field name="model">meca.pacientes</field>
+            <field name="arch" type="xml">
+                <form string="Paciente">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="sequence" readonly="1"/>
+                            <field name="dni"/>
+                            <field name="admission_date"/>
+                            <field name="update_date" readonly="1"/>
+                            <field name="treatment_ids"/>
+                            <field name="state" widget="statusbar" statusbar_visible="draft,active,inactive" statusbar_colors='{"draft":"gray","active":"green","inactive":"red"}'/>
+                        </group>
+                        <notebook>
+                            <page string="Chatter">
+                                <field name="message_ids" widget="mail_thread"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="pacientes_tree_view" model="ir.ui.view">
+            <field name="name">pacientes.tree.view</field>
+            <field name="model">meca.pacientes</field>
+            <field name="arch" type="xml">
+                <tree string="Pacientes" editable="top">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="dni"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_vertical_hospital_pacientes" model="ir.actions.act_window">
+            <field name="name">Pacientes</field>
+            <field name="res_model">meca.pacientes</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="pacientes_filter_view"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_pacientes_form_view">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="pacientes_form_view"/>
+            <field name="act_window_id" ref="action_vertical_hospital_pacientes"/>
+        </record>
+
+        <!-- Definición de Vistas y Acciones para Tratamientos -->
+        <record id="tratamientos_filter_view" model="ir.ui.view">
+            <field name="name">tratamientos.filter.view</field>
+            <field name="model">meca.tratamientos</field>
+            <field name="arch" type="xml">
+                <search string="Search ">
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="tratamientos_tree_view" model="ir.ui.view">
+            <field name="name">tratamientos.tree.view</field>
+            <field name="model">meca.tratamientos</field>
+            <field name="arch" type="xml">
+                <tree string="Tratamientos" editable="top">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="doctor_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_vertical_hospital_tratamientos" model="ir.actions.act_window">
+            <field name="name">Tratamientos</field>
+            <field name="res_model">meca.tratamientos</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="tratamientos_filter_view"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_tratamientos_tree_view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="tratamientos_tree_view"/>
+            <field name="act_window_id" ref="action_vertical_hospital_tratamientos"/>
+        </record>
+
+        <!-- Menús -->
         <menuitem id="vertical_hospital" name="Vertical Hospital"/>
 
         <menuitem id="vertical_hospital_pacientes" 
-        name="Pacientes"
-        parent="vertical_hospital.vertical_hospital" 
-        sequence="10"
-        action="action_vertical_hospital_pacientes"/>
+            name="Pacientes"
+            parent="vertical_hospital.vertical_hospital" 
+            sequence="10"
+            action="action_vertical_hospital_pacientes"/>
 
         <menuitem id="vertical_hospital_tratamientos" 
-        name="Tratamientos"
-        parent="vertical_hospital.vertical_hospital" 
-        sequence="11"
-        action="action_vertical_hospital_tratamientos"/>
-        
+            name="Tratamientos"
+            parent="vertical_hospital.vertical_hospital" 
+            sequence="11"
+            action="action_vertical_hospital_tratamientos"/>
+
+        <!-- Secuencia -->
+        <record id="seq_meca_pacientes" model="ir.sequence">
+            <field name="name">Pacientes</field>
+            <field name="code">meca.pacientes</field>
+            <field name="prefix">PA</field>
+            <field name="padding">6</field>
+            <field name="number_increment">1</field>
+        </record>
+
     </data>
 </odoo>
