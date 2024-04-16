@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="pacientes_filter_view" model="ir.ui.view">
+            <field name="name">pacientes.filter.view</field>
+            <field name="model">meca.pacientes</field>
+            <field name="arch" type="xml">
+                <search string="Search ">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="pacientes_tree_view" model="ir.ui.view">
+            <field name="name">pacientes.tree.view</field>
+            <field name="model">meca.pacientes</field>
+            <field name="arch" type="xml">
+                <tree string="Pacientes" editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_pacientes_tree_view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pacientes_tree_view"/>
+            <field name="act_window_id" ref="action_vertical_hospital_pacientes"/>
+        </record>
+
+        <record id="action_vertical_hospital_pacientes" model="ir.actions.act_window">
+            <field name="name">Pacientes</field>
+            <field name="res_model">meca.pacientes</field>
+            <field name="view_mode">tree</field>
+            <!--<field name="target">new</field>-->
+            <field name="search_view_id" ref="pacientes_filter_view"/>
+        </record>
+
+    </data>
+</odoo>

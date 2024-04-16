@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="vertical_hospital" name="Vertical Hospital"/>
+
+        <menuitem id="vertical_hospital_pacientes" 
+        name="Pacientes"
+        parent="vertical_hospital.vertical_hospital" 
+        sequence="10"
+        action="action_vertical_hospital_pacientes"/>
+
+        <menuitem id="vertical_hospital_tratamientos" 
+        name="Tratamientos"
+        parent="vertical_hospital.vertical_hospital" 
+        sequence="11"
+        action="action_vertical_hospital_tratamientos"/>
+        
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="tratamientos_filter_view" model="ir.ui.view">
+            <field name="name">tratamientos.filter.view</field>
+            <field name="model">meca.tratamientos</field>
+            <field name="arch" type="xml">
+                <search string="Search ">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="tratamientos_tree_view" model="ir.ui.view">
+            <field name="name">tratamientos.tree.view</field>
+            <field name="model">meca.tratamientos</field>
+            <field name="arch" type="xml">
+                <tree string="Tratamientos" editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_tratamientos_tree_view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="tratamientos_tree_view"/>
+            <field name="act_window_id" ref="action_vertical_hospital_tratamientos"/>
+        </record>
+
+        <record id="action_vertical_hospital_tratamientos" model="ir.actions.act_window">
+            <field name="name">Tratamientos</field>
+            <field name="res_model">meca.tratamientos</field>
+            <field name="view_mode">tree</field>
+            <!--<field name="target">new</field>-->
+            <field name="search_view_id" ref="tratamientos_filter_view"/>
+        </record>
+
+    </data>
+</odoo>
